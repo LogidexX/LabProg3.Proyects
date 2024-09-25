@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Cédula Dominicana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 250px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Validar Cédula Dominicana</h2>
+        <input type="text" id="cedulaInput" placeholder="Ingresa la cédula" />
+        <button onclick="validarCedula()">Validar</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function validarCedula() {
+            // Obtener la cédula del input
+            let cedula = document.getElementById('cedulaInput').value;
+
+            // Remover guiones de la cédula
+            cedula = cedula.replace(/-/g, '');
+
+            // Verificar que tenga 11 dígitos
+            if (cedula.length !== 11) {
+                document.getElementById('result').innerHTML = "La cédula debe tener 11 dígitos.";
+                return;
+            }
+
+            // Tomar los primeros 10 dígitos y el último dígito (dígito de control)
+            let digitos = cedula.slice(0, 10).split('').map(Number);
+            let digitoControl = parseInt(cedula[10]);
+
+            // Aplicar el algoritmo de Módulo 10 (adaptado para cédula dominicana)
+            let multiplicadores = [1, 2]; // Los dígitos en posiciones pares se multiplican por 2, los impares por 1
+            let suma = 0;
+
+            for (let i = 0; i < digitos.length; i++) {
+                let multiplicador = multiplicadores[i % 2]; // Alterna entre 1 y 2
+                let digito = digitos[i] * multiplicador;
+
+                // Si el dígito multiplicado es mayor que 9, restar 9 (sumar los dígitos del resultado)
+                if (digito > 9) {
+                    digito -= 9;
+                }
+
+                suma += digito;
+            }
+
+            // Calcular el dígito de control esperado
+            let resto = suma % 10;
+            let digitoVerificado = resto === 0 ? 0 : 10 - resto;
+
+            // Mostrar el resultado
+            if (digitoVerificado === digitoControl) {
+                document.getElementById('result').innerHTML = "La cédula es válida.";
+            } else {
+                document.getElementById('result').innerHTML = "La cédula es inválida.";
+            }
+        }
+    </script>
+
+</body>
+</html>
