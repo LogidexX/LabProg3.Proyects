@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD con Opciones Dinámicas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gestión de Usuarios</h1>
+
+        <!-- Formulario para añadir usuario -->
+        <form id="userForm">
+            <input type="text" id="username" placeholder="Nombre de usuario" required>
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <select id="userOptions">
+                <!-- Aquí se llenarán las opciones dinámicamente -->
+            </select>
+            <button type="submit">Añadir Usuario</button>
+        </form>
+
+        <!-- Formulario para añadir nuevas opciones al menú -->
+        <h2>Añadir Nueva Opción</h2>
+        <form id="optionForm">
+            <input type="text" id="newOption" placeholder="Nueva opción de menú" required>
+            <button type="submit">Añadir Opción</button>
+        </form>
+
+        <!-- Tabla para listar usuarios -->
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>Nombre de Usuario</th>
+                    <th>Email</th>
+                    <th>Opción Seleccionada</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="userList">
+                <!-- Aquí se listarán los usuarios -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
