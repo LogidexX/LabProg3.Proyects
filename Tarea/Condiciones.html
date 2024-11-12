@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style_condiciones.css">
+    <title>Formulario Multipágina</title>
+</head>
+
+<body>
+
+    <div id="form-container" class="form-container">
+        <!-- Página Condiciones -->
+        <div class="page active" id="page1">
+            <h2>Condiciones</h2>
+
+            <div class="input-group">
+                <label for="username" class="form-label">Enfermedad</label>
+                <input type="text" name="username" id="username" placeholder="Escriba su enfermedad">
+            </div>
+
+            <div class="input-group">
+                <label for="age" class="form-label">Tiempo con enfermedad</label>
+                <input type="text" id="age" placeholder="Escriba tiempo con enfermedad">
+            </div>
+
+            <div class="input-group">
+                <label for="parentezco" class="form-label">Detalle</label>
+                <textarea id="parentezco" placeholder="Escriba el detalle de la enfermedad"></textarea>
+            </div>
+
+            <button class="sign" id="guardarDatos">Guardar</button>
+
+            <a href="Familiares.html" class="sign" id="irPagina2">Ir a la Página 2</a>
+
+        </div>
+    </div>
+
+    <script>
+        // Guardar los datos en localStorage con un objeto JSON bajo la clave 'condiciones'
+        document.getElementById('guardarDatos').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            // Obtener los valores de los campos
+            const enfermedad = document.getElementById('username').value;
+            const tiempoConEnfermedad = document.getElementById('age').value;
+            const detalleEnfermedad = document.getElementById('parentezco').value;
+
+            // Crear un objeto para los datos de condiciones
+            const datosCondiciones = {
+                enfermedad: enfermedad,
+                tiempoConEnfermedad: tiempoConEnfermedad,
+                detalleEnfermedad: detalleEnfermedad
+            };
+
+            // Almacenar el objeto en localStorage
+            localStorage.setItem('condiciones', JSON.stringify(datosCondiciones));
+
+            // Redirigir a la página internamientos.html
+            window.location.href = 'internamientos.html';
+        });
+    </script>
+
+</body>
+
+</html>
