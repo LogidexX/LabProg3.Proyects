@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto con QR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <h1>Formulario de Contacto QR</h1>
+
+    <div class="card">
+
+        <div class="bg">
+
+            <form id="contact-form">
+                <label for="name" class="nombre">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="phone">Teléfono:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <button class="btn" type="button" onclick="generateQR()">Enviar</button>
+            </form>
+
+        </div>
+        <div class="blob"></div>
+
+    </div>
+
+
+
+
+
+
+
+    <div id="qr-container">
+        <h2>Código QR del Contacto</h2>
+        <canvas id="qr-code"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
